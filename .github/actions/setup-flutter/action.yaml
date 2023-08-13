@@ -12,3 +12,4 @@ runs:
         channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
     - name: install dependencies
       run: flutter pub get
+      shell: bash
