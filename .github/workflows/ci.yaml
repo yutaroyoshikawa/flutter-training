@@ -1,0 +1,14 @@
+name: ci
+
+on: pull_request
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-flutter
+      - name: analyze
+        run: flutter analyze --fatal-warnings
+      - name: format check
+        run: dart format --output=none --set-exit-if-changed .
