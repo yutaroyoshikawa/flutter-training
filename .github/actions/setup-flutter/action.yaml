@@ -1,0 +1,15 @@
+name: setup-flutter
+description: flutter の実行環境を用意します。
+
+runs:
+  using: composite
+  steps:
+    - uses: kuhnroyal/flutter-fvm-config-action@v1
+      id: fvm-config-action
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ steps.fvm-config-action.outputs.FLUTTER_VERSION }}
+        channel: ${{ steps.fvm-config-action.outputs.FLUTTER_CHANNEL }}
+    - name: install dependencies
+      run: flutter pub get
+      shell: bash
